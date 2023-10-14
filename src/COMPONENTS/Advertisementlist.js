@@ -18,11 +18,19 @@ const Advertisementlist = () => {
 
   ///////////////////////// Get API to get Unfiltered News ///////////////////////////
   const newspaperAgencyAdminId = localStorage.getItem("newspaperAgencyAdminId");
+  const newspaperAgencyAdminToken = localStorage.getItem(
+    "newspaperAgencyAdminToken"
+  );
   const [data, setData] = useState();
   const getData = async () => {
     try {
       const response = await axios.get(
-        `http://174.138.101.222:8080/${newspaperAgencyAdminId}/listadvertisements`
+        `http://174.138.101.222:8080/${newspaperAgencyAdminId}/listadvertisements`,
+        {
+          headers: {
+            Authorization: `Bearer ${newspaperAgencyAdminToken}`,
+          },
+        }
       );
       console.log(response.data.data);
       setData(response.data.data);
