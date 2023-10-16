@@ -74,7 +74,7 @@ const CreateAd = () => {
   console.log(values);
 
   const id = localStorage?.getItem("newspaperAgencyAdminId");
-
+  const newspaperAgencyAdminToken = localStorage.getItem("newspaperAgencyAdminToken");
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (imageError) {
@@ -93,6 +93,7 @@ const CreateAd = () => {
         {
           headers: {
             "Content-Type": "multipart/formdata",
+            Authorization: `Bearer ${newspaperAgencyAdminToken}`,
           },
         }
       );
